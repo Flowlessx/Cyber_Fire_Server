@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://ypbaitb5lib8"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_7qujj"]
+[ext_resource type="AudioStream" uid="uid://b073205nsxy3w" path="res://test.wav" id="2_j1hiw"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_7qujj")
+
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 340.0
+offset_right = 719.0
+offset_bottom = 544.0
+
+[node name="PortInput" type="LineEdit" parent="Menu"]
+layout_direction = 1
+layout_mode = 2
+text = "9999"
+placeholder_text = "Port"
+alignment = 1
+
+[node name="MaxPlayersInput" type="LineEdit" parent="Menu"]
+layout_mode = 2
+text = "32"
+placeholder_text = "Max Players"
+alignment = 1
+max_length = 5
+
+[node name="Start" type="Button" parent="Menu"]
+layout_mode = 2
+text = "Start
+"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://player_character/player_character.tscn")
+spawn_path = NodePath("..")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 471.0
+offset_top = 199.0
+offset_right = 672.0
+offset_bottom = 264.0
+theme_override_font_sizes/normal_font_size = 36
+text = "CYBER FIRE"
+custom_effects = [null, null]
+
+[node name="Intro_Audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_j1hiw")
+autoplay = true
+
+[connection signal="pressed" from="Menu/Start" to="." method="_on_start_pressed"]
